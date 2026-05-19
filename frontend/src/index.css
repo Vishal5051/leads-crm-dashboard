@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-slate-50 text-slate-900 transition-colors duration-300 font-sans selection:bg-brand-500/20 selection:text-brand-600 antialiased;
+  }
+  body.dark {
+    @apply bg-darkbg text-slate-100;
+  }
+}
+
+/* Glassmorphism Classes */
+.glass-panel {
+  @apply backdrop-blur-md border transition-all duration-300;
+  background-color: rgba(255, 255, 255, 0.45);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.dark .glass-panel {
+  background-color: rgba(17, 24, 39, 0.65);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.glass-card {
+  @apply backdrop-blur-md rounded-2xl shadow-glass-light border transition-all duration-300 hover:shadow-lg hover:border-slate-300/50;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-color: rgba(226, 232, 240, 0.8);
+}
+
+.dark .glass-card {
+  @apply shadow-glass-dark;
+  background-color: rgba(17, 24, 39, 0.55);
+  border-color: rgba(255, 255, 255, 0.05);
+}
+
+.dark .glass-card:hover {
+  border-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(17, 24, 39, 0.65);
+}
+
+/* Shimmer animation for Skeleton UI loader */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, rgba(226,232,240,0.6) 25%, rgba(241,245,249,0.9) 37%, rgba(226,232,240,0.6) 63%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite linear;
+}
+
+.dark .animate-shimmer {
+  background: linear-gradient(90deg, rgba(31,41,55,0.6) 25%, rgba(55,65,81,0.9) 37%, rgba(31,41,55,0.6) 63%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite linear;
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-slate-300 rounded-full transition-colors duration-200;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  @apply bg-slate-800;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-slate-400;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  @apply bg-slate-700;
+}
