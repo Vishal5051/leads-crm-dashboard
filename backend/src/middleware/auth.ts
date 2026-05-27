@@ -11,7 +11,7 @@ export const authenticate = (req: Request, res: Response, next: NextFunction): v
     }
 
     const token = authHeader.split(' ')[1];
-    const secret = process.env.JWT_SECRET;
+    const secret = process.env.JWT_SECRET || process.env.jwtsecret;
     if (!secret) {
       throw new Error('JWT_SECRET missing');
     }

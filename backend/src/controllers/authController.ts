@@ -5,7 +5,7 @@ import User from '../models/User';
 import { ApiError } from '../utils/errors';
 
 const generateToken = (payload: { id: string; email: string; role: string; name: string }): string => {
-  const secret = process.env.JWT_SECRET;
+  const secret = process.env.JWT_SECRET || process.env.jwtsecret;
   if (!secret) {
     throw new Error('JWT_SECRET missing');
   }
