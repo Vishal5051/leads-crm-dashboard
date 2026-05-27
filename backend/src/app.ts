@@ -17,7 +17,7 @@ connectDB();
 
 // Middlewares
 app.use(cors({
-  origin: '*', // Dynamic CORS support
+  origin: process.env.FRONTEND_URL,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
 }));

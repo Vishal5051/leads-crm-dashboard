@@ -5,7 +5,10 @@ import User from '../models/User';
 import { ApiError } from '../utils/errors';
 
 const generateToken = (payload: { id: string; email: string; role: string; name: string }): string => {
-  const secret = process.env.JWT_SECRET || 'super_secret_jwt_sign_key_for_smart_leads_dashboard_2026';
+  const secret = process.env.JWT_SECRET;
+  if (!secret) {
+    throw new Error('JWT_SECRET missing');
+  }
   const expires = process.env.JWT_EXPIRES_IN || '7d';
   return jwt.sign(payload, secret, { expiresIn: expires as any });
 };

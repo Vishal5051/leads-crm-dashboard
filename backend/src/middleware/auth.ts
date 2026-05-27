@@ -11,7 +11,10 @@ export const authenticate = (req: Request, res: Response, next: NextFunction): v
     }
 
     const token = authHeader.split(' ')[1];
-    const secret = process.env.JWT_SECRET || 'super_secret_jwt_sign_key_for_smart_leads_dashboard_2026';
+    const secret = process.env.JWT_SECRET;
+    if (!secret) {
+      throw new Error('JWT_SECRET missing');
+    }
 
     const decoded = jwt.verify(token, secret) as IUserPayload;
     req.user = decoded;
